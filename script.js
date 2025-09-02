@@ -1,5 +1,8 @@
 const container = document.querySelector(".container");
 const newBook = document.querySelector(".new-book");
+const dialog = document.querySelector("dialog");
+const closeDialog = document.querySelector("dialog button");
+const bookForm = document.querySelector("form");
 
 const myLibrary = [];
 
@@ -41,5 +44,23 @@ function displayBooks() {
 }
 
 newBook.addEventListener("click", () => {
-    
+    dialog.showModal();
+    console.log("working!");
+});
+
+closeDialog.addEventListener("click", () => {
+    dialog.close();
 })
+
+bookForm.addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    const title = document.getElementById("book-title").value;
+    const author = document.getElementById("book-author").value;
+    const pages = document.getElementById("book-pages").value;
+    const hasRead = document.getElementById("book-read").value;
+
+    addBookToLibrary(title, author, pages, hasRead);
+    displayBooks();
+    dialog.close()
+});

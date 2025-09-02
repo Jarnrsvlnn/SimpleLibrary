@@ -7,9 +7,19 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <button class="new-book">New Book</button>
     <div class="container">
-        <button class="new-book">New Book</button>
     </div>
+    <dialog>
+        <button>Close</button>
+        <form>
+            <input type="text" id="book-title" placeholder="Enter book title">
+            <input type="text" placeholder="Enter book author" id="book-author">
+            <input type="number" placeholder="Enter book pages" id="book-pages">
+            <input type="text" id="book-read">
+            <button type="submit">Add Book</button>
+        </form>
+    </dialog>
 </body>
 <script src="script.js"></script>
 </html>
