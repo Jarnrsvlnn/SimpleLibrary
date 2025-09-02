@@ -13,10 +13,15 @@
     <dialog>
         <button>Close</button>
         <form>
-            <input type="text" id="book-title" placeholder="Enter book title">
-            <input type="text" placeholder="Enter book author" id="book-author">
-            <input type="number" placeholder="Enter book pages" id="book-pages">
-            <input type="text" id="book-read">
+            <input type="text" id="book-title" placeholder="Enter book title" required autofocus>
+            <input type="text" placeholder="Enter book author" id="book-author" required>
+            <input type="number" placeholder="Enter book pages" id="book-pages" required>
+
+            <label for="read-status">Read Status</label>
+            <select name="read-status" id="read-status" required>
+                <option value="true">Yes</option>
+                <option value="false">No</option>
+            </select>
             <button type="submit">Add Book</button>
         </form>
     </dialog>
