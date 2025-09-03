@@ -24,6 +24,7 @@ function displayBooks() {
 
     for (const book of myLibrary) {
         const bookCard = document.createElement("div");
+        const bookText = document.createElement("div");
         const bookButtons = document.createElement("div");
         const booktitle = document.createElement("p");
         const bookAuthor = document.createElement("p");
@@ -31,10 +32,12 @@ function displayBooks() {
         const bookReadState = document.createElement("p");
         const deleteBook = document.createElement("button");
         const toggleReadStatus = document.createElement("button");
+
         deleteBook.classList.add("delete-book");
         toggleReadStatus.classList.add("toggle-read");
         bookButtons.classList.add("book-buttons");
         bookCard.classList.add("book-card");
+        bookText.classList.add("book-text");
         
         booktitle.textContent = `${book.title}`;
         bookAuthor.textContent = `${book.author}`;
@@ -48,13 +51,14 @@ function displayBooks() {
             displayBooks();
         })
 
-        bookCard.append(booktitle);
-        bookCard.append(bookAuthor);
-        bookCard.append(bookPages);
-        bookCard.append(bookReadState);
-        bookButtons.append(deleteBook);
+        bookText.append(booktitle);
+        bookText.append(bookAuthor);
+        bookText.append(bookPages);
+        bookText.append(bookReadState);
         bookButtons.append(toggleReadStatus);
+        bookButtons.append(deleteBook);
 
+        bookCard.append(bookText);
         bookCard.append(bookButtons);
         container.append(bookCard);
     }
