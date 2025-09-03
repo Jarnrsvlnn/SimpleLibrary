@@ -9,3 +9,19 @@
     display: grid;
     grid-template-columns: repeat(4, 1fr);
 }
+
+.container .book-card {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    border: 2px solid red;
+    padding: 1rem;
+}
+
+.container .book-card .book-buttons {
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    justify-content: space-between;
+}

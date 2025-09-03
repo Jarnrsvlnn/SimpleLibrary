@@ -24,6 +24,7 @@ function displayBooks() {
 
     for (const book of myLibrary) {
         const bookCard = document.createElement("div");
+        const bookButtons = document.createElement("div");
         const booktitle = document.createElement("p");
         const bookAuthor = document.createElement("p");
         const bookPages = document.createElement("p");
@@ -32,12 +33,15 @@ function displayBooks() {
         const toggleReadStatus = document.createElement("button");
         deleteBook.classList.add("delete-book");
         toggleReadStatus.classList.add("toggle-read");
+        bookButtons.classList.add("book-buttons");
+        bookCard.classList.add("book-card");
         
         booktitle.textContent = `${book.title}`;
         bookAuthor.textContent = `${book.author}`;
         bookPages.textContent = `${book.pages}`;
         bookReadState.textContent = book.hasRead ? "Read" : "Not Read";
         deleteBook.textContent = "Delete Book";
+        toggleReadStatus.textContent = "Toggle";        
 
         toggleReadStatus.addEventListener("click", () => {
             book.hasRead = !book.hasRead;
@@ -48,9 +52,10 @@ function displayBooks() {
         bookCard.append(bookAuthor);
         bookCard.append(bookPages);
         bookCard.append(bookReadState);
-        bookCard.append(deleteBook);
-        bookCard.append(toggleReadStatus);
+        bookButtons.append(deleteBook);
+        bookButtons.append(toggleReadStatus);
 
+        bookCard.append(bookButtons);
         container.append(bookCard);
     }
 }
@@ -65,7 +70,6 @@ container.addEventListener("click", (e) => {
         displayBooks();
     }
 });
-
 
 newBook.addEventListener("click", () => {
     dialog.showModal();
@@ -82,7 +86,6 @@ bookForm.addEventListener("submit", function(e) {
     const title = document.getElementById("book-title").value;
     const author = document.getElementById("book-author").value;
     const pages = document.getElementById("book-pages").value;
-    const hasRead = document.getElementById("book-read").value;
     const readStatus = document.getElementById("read-status").value;
 
     addBookToLibrary(title, author, pages, readStatus);
