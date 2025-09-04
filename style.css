@@ -7,6 +7,10 @@
     font-family: "Roboto", sans-serif;
 }
 
+body {
+    background-color: rgb(14, 17, 26);
+    color: white;
+}
 .container { 
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
@@ -19,11 +23,12 @@
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    border: 2px solid red;
+    border: 1px solid rgb(80, 87, 107);
+    box-shadow: rgb(0, 0, 0) 0px 5px 30px;
     padding: 1rem;
     border-radius: 10px;
     height: 40vh;
-    gap: 3rem;
+    gap: 2rem;
 }
 
 .book-card .book-upper-container {
@@ -37,18 +42,18 @@
 .book-card .book-image {
     border-radius: 10px;
     flex: 2;
-    border: 1px solid purple;
+    border: 1px solid rgb(80, 87, 107);
     width: 100%;
 }
 
 .book-card .book-text {
     width: 100%;
-    border: 1px solid blue;
 }
 
 .book-upper-container .book-text p:first-child {
     text-align: center;
-    margin-bottom: 0.5rem;
+    margin-bottom: 1rem;
+    font-weight: 600;
 }
 
 .container .book-card .book-buttons {
@@ -62,4 +67,29 @@
 
 .book-buttons button {
     width: 40%;
+}
+
+dialog {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 2rem;
+    border: none;
+    border-radius: 12px;
+    background: rgb(28, 32, 41); 
+    height: 50vh;
+}
+
+dialog::backdrop {
+    background: rgba(0, 0, 0, 0.7); /* dim background overlay */
+}
+
+dialog form {
+    height: 100%;
+    border: 1px solid white;
 }
