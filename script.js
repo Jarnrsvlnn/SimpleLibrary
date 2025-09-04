@@ -24,8 +24,10 @@ function displayBooks() {
 
     for (const book of myLibrary) {
         const bookCard = document.createElement("div");
+        const bookDetails = document.createElement("div");
         const bookText = document.createElement("div");
         const bookButtons = document.createElement("div");
+        const bookImage = document.createElement("div");
         const booktitle = document.createElement("p");
         const bookAuthor = document.createElement("p");
         const bookPages = document.createElement("p");
@@ -38,11 +40,13 @@ function displayBooks() {
         bookButtons.classList.add("book-buttons");
         bookCard.classList.add("book-card");
         bookText.classList.add("book-text");
+        bookImage.classList.add("book-image");
+        bookDetails.classList.add("book-upper-container")
         
         booktitle.textContent = `${book.title}`;
-        bookAuthor.textContent = `${book.author}`;
-        bookPages.textContent = `${book.pages}`;
-        bookReadState.textContent = book.hasRead ? "Read" : "Not Read";
+        bookAuthor.textContent = `Author: ${book.author}`;
+        bookPages.textContent = `Pages: ${book.pages}`;
+        bookReadState.textContent = book.hasRead ? "Status: Read" : "Status: Not Read";
         deleteBook.textContent = "Delete Book";
         toggleReadStatus.textContent = "Toggle";        
 
@@ -58,7 +62,10 @@ function displayBooks() {
         bookButtons.append(toggleReadStatus);
         bookButtons.append(deleteBook);
 
-        bookCard.append(bookText);
+        bookDetails.append(bookImage);
+        bookDetails.append(bookText);
+
+        bookCard.append(bookDetails);
         bookCard.append(bookButtons);
         container.append(bookCard);
     }
