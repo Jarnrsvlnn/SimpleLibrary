@@ -35,6 +35,7 @@ function displayBooks() {
         const deleteBook = document.createElement("button");
         const toggleReadStatus = document.createElement("button");
 
+        // adding classes to each elements to style them in css
         deleteBook.classList.add("delete-book");
         toggleReadStatus.classList.add("toggle-read");
         bookButtons.classList.add("book-buttons");
@@ -43,17 +44,16 @@ function displayBooks() {
         bookImage.classList.add("book-image");
         bookDetails.classList.add("book-upper-container")
         
+        // attach each books id to their respective buttons sothat we can call them properly later
+        deleteBook.dataset.id = book.id;
+        toggleReadStatus.dataset.id = book.id;
+
         booktitle.textContent = `${book.title}`;
         bookAuthor.textContent = `Author: ${book.author}`;
         bookPages.textContent = `Pages: ${book.pages}`;
         bookReadState.textContent = book.hasRead ? "Status: Read" : "Status: Not Read";
         deleteBook.textContent = "Delete Book";
         toggleReadStatus.textContent = "Toggle";        
-
-        toggleReadStatus.addEventListener("click", () => {
-            book.hasRead = !book.hasRead;
-            displayBooks();
-        })
 
         bookText.append(booktitle);
         bookText.append(bookAuthor);
@@ -74,17 +74,33 @@ function displayBooks() {
 // delete book function using delegation
 container.addEventListener("click", (e) => {
     if (e.target.matches(".delete-book")) {
-        const id = e.target.id;
+        const id = e.target.dataset.id;
         const bookDeleteIndex = myLibrary.findIndex(book => book.id === id);
 
-        myLibrary.splice(bookDeleteIndex, 1);
+        const cardToRemove = e.target.closest(".book-card");
+        cardToRemove.classList.add("removing");
+
+        // wait for animation, then remove
+        setTimeout(() => {
+            myLibrary.splice(bookDeleteIndex, 1);
+            displayBooks();
+        }, 300); // matches CSS transition duration
+    }
+});
+
+// toggle book read status using delegation
+container.addEventListener("click", (e) => {
+    if (e.target.matches(".toggle-read")) {
+        const id = e.target.dataset.id;
+        const bookToToggle = myLibrary.findIndex(book => book.id === id);
+
+        myLibrary[bookToToggle].hasRead = !myLibrary[bookToToggle].hasRead;
         displayBooks();
     }
 });
 
 newBook.addEventListener("click", () => {
     dialog.showModal();
-    console.log("working!");
 });
 
 closeDialog.addEventListener("click", () => {
