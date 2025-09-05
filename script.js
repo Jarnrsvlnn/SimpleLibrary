@@ -53,7 +53,14 @@ function displayBooks() {
         bookPages.textContent = `Pages: ${book.pages}`;
         bookReadState.textContent = book.hasRead ? "Status: Read" : "Status: Not Read";
         deleteBook.textContent = "Delete Book";
-        toggleReadStatus.textContent = "Toggle";        
+        toggleReadStatus.textContent = "Toggle";      
+        
+        if (book.hasRead) {
+            bookCard.classList.add("read");
+        } 
+        else {
+            bookCard.classList.remove("read");
+        }
 
         bookText.append(booktitle);
         bookText.append(bookAuthor);
@@ -84,7 +91,7 @@ container.addEventListener("click", (e) => {
         setTimeout(() => {
             myLibrary.splice(bookDeleteIndex, 1);
             displayBooks();
-        }, 300); // matches CSS transition duration
+        }, 10); // matches CSS transition duration
     }
 });
 
@@ -95,6 +102,7 @@ container.addEventListener("click", (e) => {
         const bookToToggle = myLibrary.findIndex(book => book.id === id);
 
         myLibrary[bookToToggle].hasRead = !myLibrary[bookToToggle].hasRead;
+
         displayBooks();
     }
 });
